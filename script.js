@@ -1,12 +1,12 @@
 const container = document.getElementById("grid-container");
 
-function makeGrid() {
-    for (let r = 0; r < 16; r++) {
+function makeGrid(num) {
+    for (let r = 0; r < num; r++) {
         // Create a row container
         const row = document.createElement("div");
         row.classList.add("grid-row");
 
-        for (let c = 0; c < 16; c++) {
+        for (let c = 0; c < num; c++) {
             // Create a cell
             const cell = document.createElement("div");
             cell.classList.add("grid-cell");
@@ -28,4 +28,26 @@ function makeGrid() {
     }
 }
 
-makeGrid();
+function changeGrid() {
+    const button = document.getElementById("button");
+
+    button.addEventListener("click", () => {
+        const inputField = prompt("Enter the size of the grid (1–100)");
+
+        if (inputField === null) return;
+
+        const size = Number(inputField);
+
+        if (!Number.isInteger(size) || size < 1 || size > 100) {
+            alert("Please enter a whole number between 1 and 100.");
+            return;
+        }
+        container.style.setProperty("--grid-size", size);
+        container.innerHTML = "";
+        makeGrid(size);
+
+    });
+}
+
+makeGrid(16);
+changeGrid();
