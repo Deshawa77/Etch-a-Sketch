@@ -18,7 +18,12 @@
 .grid-cell {
     flex: 1;
     min-width: 0;
-    background-color: wheat;
+    background-color: white;
     border: 1px solid #ddd;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.grid-cell.hovered {
+    background-color: black;
 }
